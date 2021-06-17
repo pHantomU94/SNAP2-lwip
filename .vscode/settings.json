@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "xutility": "cpp",
+        "ip_addr.h": "c"
+    }
+}
