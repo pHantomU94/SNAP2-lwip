@@ -110,10 +110,15 @@ init_platform()
      */
     /* ps7_init();*/
     /* psu_init();*/
+    // NOTE: 似乎没有操作
     enable_caches();
+    // NOTE: 初始化timer控制寄存器
     init_tmrctr();
+    // NOTE: 似乎没做任何操作
     init_uart();
+    // NOTE: 初始化网络设备
     init_sysmon();
+    // NOTE: 
     init_spi();
     init_icap();
 }

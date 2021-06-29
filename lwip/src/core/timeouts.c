@@ -78,14 +78,18 @@ const struct lwip_cyclic_timer lwip_cyclic_timers[] = {
 #if IP_REASSEMBLY
   {IP_TMR_INTERVAL, HANDLER(ip_reass_tmr)},
 #endif /* IP_REASSEMBLY */
+// NOTE: ARP间隔1s
 #if LWIP_ARP
   {ARP_TMR_INTERVAL, HANDLER(etharp_tmr)},
 #endif /* LWIP_ARP */
 #if LWIP_DHCP
+  // NOTE: DHCP 周期
   {DHCP_COARSE_TIMER_MSECS, HANDLER(dhcp_coarse_tmr)},
+  // NOTE: DHCP 包超时
   {DHCP_FINE_TIMER_MSECS, HANDLER(dhcp_fine_tmr)},
 #endif /* LWIP_DHCP */
 #if LWIP_AUTOIP
+  // NOTE: AUTOIP
   {AUTOIP_TMR_INTERVAL, HANDLER(autoip_tmr)},
 #endif /* LWIP_AUTOIP */
 #if LWIP_IGMP

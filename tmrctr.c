@@ -18,24 +18,34 @@ init_tmrctr()
   // The following sequence in taken from the AXI Timer Product Guide (pg079).
 
   // Clear the timer enable bits in control registers (TCSR0 and TCSR1).
+  // 第一个寄存器前4字节置0
   XTmrCtr_SetControlStatusReg(XPAR_TMRCTR_0_BASEADDR, 0, csr);
+  // 第二个寄存器前4字节置0
   XTmrCtr_SetControlStatusReg(XPAR_TMRCTR_0_BASEADDR, 1, csr);
 
   // Write the lower 32-bit timer/counter load register (TLR0).
+  // 第一个个寄存器后4字节置0
   XTmrCtr_SetLoadReg(XPAR_TMRCTR_0_BASEADDR, 0, 0);
 
   // Write the higher 32-bit timer/counter load register (TLR1).
+  // 第二个寄存器后4字节置0
   XTmrCtr_SetLoadReg(XPAR_TMRCTR_0_BASEADDR, 1, 0);
 
   // Set the CASC bit in Control register TCSR0.
+  // 第一个寄存器前4字节置0x0000800
+  // NOTE: 第二个字节为00001000
   csr |= XTC_CSR_CASC_MASK;
   XTmrCtr_SetControlStatusReg(XPAR_TMRCTR_0_BASEADDR, 0, csr);
 
   // Set other mode control bits in control register (TCSR0) as needed.
+  // 第一个寄存器前4字节置0x0000010
+  // NOTE: 第一个字节高4位为0001
   csr |= XTC_CSR_AUTO_RELOAD_MASK;
   XTmrCtr_SetControlStatusReg(XPAR_TMRCTR_0_BASEADDR, 0, csr);
 
   // Enable the timer in Control register (TCSR0).
+  // 第一个寄存器前4字节置0x0000400
+  // NOTE: 第二个字节为00001000 -> 00001100
   csr |= XTC_CSR_ENABLE_ALL_MASK;
   XTmrCtr_SetControlStatusReg(XPAR_TMRCTR_0_BASEADDR, 0, csr);
 }

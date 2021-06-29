@@ -341,7 +341,9 @@ casper_lwip_init()
       IP4_ADDR_ANY, IP4_ADDR_ANY, IP4_ADDR_ANY,
       &ifstate, casper_netif_init, netif_input);
 
+  // NOTE: 初始化网卡状态
   netif_set_default(&netif_en[0]);
+  // NOTE: 开启网卡
   netif_set_up(&netif_en[0]);
 
   // Start DHCP
